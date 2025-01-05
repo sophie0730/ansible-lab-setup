@@ -1,0 +1,24 @@
+---
+- name: Create folder
+  file:
+    path: "{{ project_path }}"
+    state: directory
+    mode: "0755"
+
+- name: Create docker-compose yaml
+  copy:
+    dest: "{{ project_path}}/docker-compose.yaml"
+    content: |
+      version: '3'
+      services:
+        grafana:
+          image: grafana/grafana:11.4.0
+          container_name: grafana
+          ports:
+            - "3000:3000"
+          volumes:
+            - grafana_data:/var/lib/grafana
+          restart: always
+      volumes:
+        grafana_data:
+        

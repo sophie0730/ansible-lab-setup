@@ -1,0 +1,9 @@
+[monitoring]
+monitoring-node ansible_host=your_host ansible_user=your_user
+
+[exporter]
+exporter-node ansible_host=your_host ansible_user=your_user
+
+[all:children]
+monitoring
+exporter

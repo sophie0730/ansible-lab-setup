@@ -1,0 +1,6 @@
+---
+- name: Setup Docker
+  hosts: "{{ target_host | default('all') }}"
+  become: true
+  roles: 
+    - docker

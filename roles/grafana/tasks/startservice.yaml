@@ -1,0 +1,11 @@
+---
+- name: start Grafana container
+  command:
+    cmd: docker compose up -d
+    chdir: "{{ project_path }}"
+
+- name: Ensure grafana is running
+  command: docker ps --filter "name=grafana"
+  register: grafana_status
+  changed_when: false
+        

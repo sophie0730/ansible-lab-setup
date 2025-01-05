@@ -1,0 +1,6 @@
+---
+- name: Setup Exporter
+  hosts: exporter
+  become: true
+  roles: 
+    - node-exporter

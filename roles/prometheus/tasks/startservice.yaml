@@ -1,0 +1,10 @@
+---
+- name: start Prometheus container
+  command:
+    cmd: docker compose up -d
+    chdir: "{{ project_path }}"
+
+- name: Ensure prometheus is running
+  command: docker ps --filter "name=prometheus"
+  register: prometheus_status
+  changed_when: false

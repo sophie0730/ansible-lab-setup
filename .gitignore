@@ -1,0 +1,3 @@
+.python-version
+*_venv/
+inventory/hosts.ini

@@ -1,0 +1,6 @@
+---
+- name: Create docker compose file
+  import_tasks: setupfile.yaml
+
+- name: Run Grafana service
+  import_tasks: startservice.yaml

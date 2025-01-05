@@ -1,0 +1,6 @@
+---
+- name: Create config and docker compose file
+  import_tasks: setupfile.yaml
+
+- name: Run Prometheus service
+  import_tasks: startservice.yaml

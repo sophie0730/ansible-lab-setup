@@ -1,0 +1,48 @@
+---
+- name: Test Connection
+  ping:
+
+- name: Debug host selection
+  debug:
+    msg: "Running on host {{ inventory_hostname }}"
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: true
+  loop: "{{ required_packages }}"
+
+- name: Add Docker's official GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    state: present
+  
+- name: Update apt cache and install Docker engine
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: true
+  loop: "{{ docker_engines }}"
+
+- name: Install Docker Compose
+  apt:
+    name:
+      - docker-compose
+    state: present
+    update_cache: true
+
+- name: Check if Docker group exsits
+  group:
+    name: docker
+    state: present
+
+- name: Add user to Docker group
+  user:
+    name: "{{ user }}"
+    groups: docker
+    append: true

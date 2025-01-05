@@ -1,0 +1,7 @@
+---
+- name: Setup Monitoring services
+  hosts: monitoring
+  become: true
+  roles: 
+    - grafana
+    - prometheus
